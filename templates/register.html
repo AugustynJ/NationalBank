@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+</head>
+<body>
+
+    <h2>Register</h2>
+
+    {% if error %}
+        <p style="color: #f00;">{{ error }}</p>
+    {% endif %}
+
+    <form action="/register" method="post">
+        <label>Username:</label>
+        <input type="text" name="username" required><br>
+
+        <label>E-mail:</label>
+        <input type="text" name="email" required><br>
+
+        <label>Password:</label>
+        <input type="password" name="password" required><br>
+
+        <label>Confirm password:</label>
+        <input type="password" name="confirm-password" required><br>
+
+        <input type="submit" value="Register">
+    </form>
+
+    <p>Wanna get random strong pass?</p>
+    <form action="/register" method="post">
+
+        <label>Number of characters:</label>
+        <input type="text" name="length" value="20" required>
+
+        <input type="submit" name="get_strong_password" value="Get strong password">
+        {% if generated_password %}
+            <p>{{ generated_password }}</p>
+        {% endif %}
+    </form>
+
+
+    <a href="{{ url_for('home') }}">Return</a>
+
+</body>
+</html>
